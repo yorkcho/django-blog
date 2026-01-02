@@ -1,0 +1,25 @@
+
+{% comment %}
+    LoginView 自動傳遞了一個名為 'form' 的 context 變數
+{% endcomment %}
+
+<h2>登入您的帳戶</h2>
+
+{% if form.errors %}
+    <p style="color: red;">您的使用者名稱或密碼不正確。請再試一次。</p>
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    
+    {{ form.as_p }}
+    
+    {% if next %}
+        <input type="hidden" name="next" value="{{ next }}" />
+    {% endif %}
+
+    <button type="submit">登入</button>
+</form>
+
+<hr>
+<p>還沒有帳號嗎？<a href="">註冊</a></p>

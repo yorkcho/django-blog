@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Edit{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm p-4">
+<h2 class="mb-4">Edit Post</h2>
+<form action="{% url 'edit_post' post.id %}" method="POST">
+{% csrf_token %}
+
+
+<div class="mb-3">
+<label for="id_title" class="form-label">文章標題</label>
+<input type="text" id="id_title" name="title" value="{{ post.title }}" class="form-control" required>
+</div>
+
+
+<div class="mb-3">
+<label for="id_content" class="form-label">文章內容</label>
+<textarea id="id_content" name="content" class="form-control" rows="6" required>{{ post.content }}</textarea>
+</div>
+
+
+<button type="submit" class="btn btn-success">修改文章</button>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Edit{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm p-4 mb-4">
+    <h1 class="mb-3">{{ post.title }}</h1>
+    <p class="text-muted">{{ post.content }}</p>
+    <small class="text-secondary">Published on: {{ post.created_at }}</small>
+</div>
+
+<div class="d-flex gap-3">
+    <a href="{% url 'edit_post' post.pk %}" class="btn btn-secondary">編輯</a>
+
+
+    <form action="{% url 'delete_post' post.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger"
+            onclick="return confirm('確定要刪除這篇文章嗎？');">
+        刪除
+        </button>
+    </form>
+</div>
+{% endblock %}

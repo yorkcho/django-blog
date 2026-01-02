@@ -1,0 +1,17 @@
+<h1>Login</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    <div>
+        <label>帳號：</label>
+        <input type="text" name="username" required>
+    </div>
+
+    <div>
+        <label>密碼：</label>
+        <input type="text" name="password" >
+    </div>
+    {% if messages %}
+    <small color='red'>{{ messages }}</small>
+    {% endif %}
+    <button type="submit">登入</button>
+</form>

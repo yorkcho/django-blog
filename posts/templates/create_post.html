@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+{% block title %}Create new post{% endblock %}
+
+{% block content %}
+<h1>Create post</h1>
+<form action="" method ="post">
+    {% csrf_token %}
+    
+    <div>
+        <label for="id_title">文章標題:</label>
+        <input type="text" id="id_title" name="title" required>
+    </div>
+
+    <div>
+        <label for="id_content">文章內容:</label>
+        <textarea id="id_content" name="content" required></textarea>
+    </div>
+
+    <button type="submit">送出文章</button>
+</form>
+{% endblock %}

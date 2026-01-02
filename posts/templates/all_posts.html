@@ -1,0 +1,39 @@
+
+{% extends "base.html" %}
+{% block title %}All Posts{% endblock %}
+{% block content %}
+
+
+{% if messages %}
+<ul class="messages">
+    <li {% if messages.tags %} class="{{ messages.tags }}"{% endif %}>{{ messages }}</li>
+</ul>
+{% endif %}
+
+
+<h1 class="mb-4">All Blog Posts</h1>
+
+{% if posts %}
+<div class="row g-4">
+    {% for post in posts %}
+    <div class="col-12">
+        <div class="card shadow-sm p-3">
+            <a href="{% url 'post_detail' post.pk %}" class="text-decoration-none text-dark">
+                <h3 class="card-title">{{ post.title }}</h3>
+                <p class="card-text text-muted">
+                    {{ post.content|truncatechars:150 }}
+                </p>
+                <small class="text-secondary"> {{ post.author }} Published on: {{ post.created_at }}</small>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% else %}
+<p>No blog posts available 🥺</p>
+{% endif %}
+
+
+
+{% endblock %}
