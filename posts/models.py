@@ -8,7 +8,6 @@ class Post(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='posts',
-        default=1
     )
     title = models.CharField(max_length=200)
     content = models.TextField()

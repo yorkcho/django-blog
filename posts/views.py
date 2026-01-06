@@ -12,17 +12,6 @@ from .serializers import PostListSerializer, PostUpdateSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from .permissions import IsOwnerOrReadOnly
 
-class IndexView(generic.ListView):
-    template_name = "all_posts.html"
-    context_object_name = "posts" # 指定ListView創建的list名稱，default叫做post_list
-    def get_queryset(self):
-        """Return the list of a model"""
-        return Post.objects.all()
-# def all_posts(request):
-#     posts = Post.objects.all()
-#     context = {'posts': posts}
-#     return render(request, "all_posts.html", context)
-# views.py
 
 # api
 class PostListCreateAPI(generics.ListCreateAPIView):
@@ -38,7 +27,17 @@ class PostUpdateAPI(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
 
 
-
+class IndexView(generic.ListView):
+    template_name = "all_posts.html"
+    context_object_name = "posts" # 指定ListView創建的list名稱，default叫做post_list
+    def get_queryset(self):
+        """Return the list of a model"""
+        return Post.objects.all()
+# def all_posts(request):
+#     posts = Post.objects.all()
+#     context = {'posts': posts}
+#     return render(request, "all_posts.html", context)
+# views.py
 class DetailView(generic.DetailView):
     model = Post
     template_name = "post_detail.html" # 因為使用DetailView, post這個variable會自動提供
